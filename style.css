@@ -1,0 +1,43 @@
+html,
+body {
+	position: relative;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+.mission-complete {
+	width: 250px;
+	height: 150px;
+
+	position: absolute;
+	top: 300px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+
+	transition: 1.5s ease-out;
+
+	opacity: 0;
+	visibility: hidden;
+}
+
+.mission-complete.is-visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+.passed {
+	background: black;
+	color: white;
+	padding: 10px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.secret {
+	display: none;
+}
+
+/*
+072 111 032 104 111 032 104 111 032 104 097 032 104 097 044 032 104 111 032 104 111 032 104 111 032 104 101 032 104 097 046 032 072 101 108 108 111 032 116 104 101 114 101 044 032 111 108 100 032 099 104 117 109 046 032 073 226 128 153 109 032 103 110 111 116 032 097 110 032 103 110 101 108 102 046 032 073 226 128 153 109 032 103 110 111 116 032 097 032 103 111 098 108 105 110 046 032 073 226 128 153 109 032 097 032 103 110 111 109 101 046 032 065 110 100 032 121 111 117 226 128 153 118 101 032 098 101 101 110 044 032 071 078 079 077 069 068 226 128 153
+*/

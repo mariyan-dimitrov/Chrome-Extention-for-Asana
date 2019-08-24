@@ -1,0 +1,22 @@
+{
+    "name": "DX Asana Goodies",
+    "version": "1.1",
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "permissions": [
+        "declarativeContent",
+        "storage",
+        "activeTab",
+        "tabs",
+        "notifications",
+        "http://*/",
+        "https://*/"
+    ],
+    "description": "Extention for the cool teammates!",
+    "manifest_version": 2,
+    "web_accessible_resources": [
+        "mission-complete/*"
+    ]
+}
