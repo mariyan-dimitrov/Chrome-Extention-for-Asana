@@ -1,33 +1,53 @@
 'use strict'
-var musicURL = chrome.extension.getURL('/mission-complete/music.mp3');
-var music = new Audio(musicURL);
-var disabled = false;
+var dankExtention = {
+    memeLength: {
+        'mission-complete': 8000,
+    },
+    memeStateFor: {
+        'mission-complete': false,
+    },
+    triggerMeme: function ( memeName ) {
+        let that = this;
+        // simple check so that sound are not overlappping
+        if( that.memeStateFor[ memeName ] ) {
+            return;
+        }
 
-$('.mission-complete').remove();
-$('body').append(
-    `<div class="mission-complete">
-        <div class="wav"><img src="${chrome.extension.getURL('/mission-complete/picture.png')}" alt="" /></div>
-    </div>`
-);
+        // seatching the URL's from the extention to the page's context 
+        let musicURL = chrome.extension.getURL('/resources/' + memeName + '/music.mp3');
+        let pictureURL = chrome.extension.getURL('/resources/' + memeName + '/picture.png')
+        let music = new Audio(musicURL);
 
-$(document).on('click', '.Button.Button--small.Button--secondary.CompletionButton--isIncomplete.CompletionButton', function () {
+        that.memeStateFor[memeName]= true;
 
-    if(disabled) {
-        return;
+        //reusing the modal
+        $( '#' + memeName ).remove();
+        $( 'body' ).append(
+            `<div id="${ memeName }">
+                <div class="wav"><img src="${ pictureURL }" alt="" /></div>
+            </div>`
+        );
+
+        $( '#' + memeName ).addClass( 'is-visible' );
+        music.play();
+    
+        setTimeout( function () {
+            $( '#' + memeName ).removeClass( 'is-visible' );
+            music.pause();
+            music.currentTime = 0;
+            that.memeStateFor[ memeName ] = false;
+        }, that.memeLength[ memeName ] );
+
+    },
+    init: function () {
+        let that = this;
+        $( document ).on( 'click' , '.Button.Button--small.Button--secondary.CompletionButton--isIncomplete.CompletionButton, .TaskRowCompletionStatus-checkbox.TaskRowCompletionStatus-checkbox--incomplete' , function () {
+            that.triggerMeme( 'mission-complete' );
+        });
     }
+};
 
-    // Show it
-    $('.mission-complete').addClass('is-visible');
-    // Play it
-    music.play();
-    // But dont bug it
-    disabled = true;
-
-    setTimeout(function(){
-        $('.mission-complete').removeClass('is-visible');
-        music.pause();
-        music.currentTime = 0;
-
-        disabled = false;
-    }, 8000);
-});
+if ( ! window.dankExtInitialized ) {
+    window.dankExtInitialized = true;
+    dankExtention.init();
+}
