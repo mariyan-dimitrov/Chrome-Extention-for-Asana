@@ -11,10 +11,5 @@
         "js": ["jQuery.js", "popup.js"],
         "css": ["style.css"],
         "matches": [ "https://app.asana.com/*" ]
-    },
-    {
-        "matches": ["https://stackoverflow.com/*"],
-        "js": ["jQuery.js", "popup.js"],
-        "css": ["style.css"]
     }]
 }
