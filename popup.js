@@ -46,11 +46,12 @@ var dankExtention = {
     // the attaching of events
     init: function () {
         let that = this;
+        let hoverMemeTimeOut = {};
         $( document ).on( 'click' , '.Button.Button--small.Button--secondary.CompletionButton--isIncomplete.CompletionButton, .TaskRowCompletionStatus-checkbox.TaskRowCompletionStatus-checkbox--incomplete' , function () {
+            clearTimeout(hoverMemeTimeOut);
             that.triggerMeme( 'mission-complete', 'png' );
         });
 
-        let hoverMemeTimeOut = {};
 
         // delegate events for hover-in and hover-out
         $('body').on({
