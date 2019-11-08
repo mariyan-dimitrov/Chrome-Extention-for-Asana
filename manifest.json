@@ -11,5 +11,8 @@
         "js": ["jQuery.js", "popup.js"],
         "css": ["style.css"],
         "matches": [ "https://app.asana.com/*" ]
-    }]
+    }],
+    "icons": {
+        "128": "img/128.png" 
+    }
 }
