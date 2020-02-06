@@ -41,7 +41,9 @@ var dankExtention = {
         }
 
         // showing the modal
-        $( '.' + memeName ).addClass( 'is-visible' );
+        setTimeout(function () {
+            $( '.' + memeName ).addClass( 'is-visible' );
+        }, 0);
         music.play();
         
         // hiding the modal when the music/audio stops
@@ -57,7 +59,8 @@ var dankExtention = {
     init: function () {
         let that = this;
         let hoverMemeTimeOut = {};
-        $( document ).on( 'click' , '.Button.Button--small.Button--secondary.CompletionButton--isIncomplete.CompletionButton, .TaskRowCompletionStatus-checkbox.TaskRowCompletionStatus-checkbox--incomplete' , function () {
+        $( document ).on( 'click' , '.Button.Button--secondary.Button--secondaryColorOnHoverOnly.TaskPaneToolbarCompletionButton, ' +
+        '.TaskRowCompletionStatus-checkbox.TaskRowCompletionStatus-checkbox--incomplete' , function () {
             clearTimeout(hoverMemeTimeOut);
             that.triggerMeme( 'mission-complete', 'png' );
         });
@@ -74,7 +77,7 @@ var dankExtention = {
             mouseleave: function() {
                 clearTimeout(hoverMemeTimeOut);
             }
-        }, '.Button.Button--small.Button--secondary.CompletionButton--isIncomplete.CompletionButton, ' +
+        }, '.Button.Button--secondary.Button--secondaryColorOnHoverOnly.TaskPaneToolbarCompletionButton, ' +
            '.TaskRowCompletionStatus-checkbox.TaskRowCompletionStatus-checkbox--incomplete' );
 
         $( document ).on('click', '.Button.Button--small.Button--primary.AddTaskDropdownButton-addTaskButton', function () {
